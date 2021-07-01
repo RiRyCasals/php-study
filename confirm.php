@@ -9,6 +9,7 @@ $mail = $_POST["mail"];
 $inquiry = $_POST["inquiry"];
 
 if (empty($name) || empty($mail) || empty($inquiry)){
+    $_SESSION['error'] = true;
     header('Location: input.php');
 }
 

@@ -4,13 +4,15 @@ include('./module.php');
 
 session_start();
 
-$name = $_SESSION["name"] ?? '';
-$mail = $_SESSION["mail"] ?? '';
-$inquiry = $_SESSION["inquiry"] ?? '';
+$name = $_SESSION['name'] ?? '';
+$mail = $_SESSION['mail'] ?? '';
+$inquiry = $_SESSION['inquiry'] ?? '';
+$error = boolval($_SESSION['error'] ?? false);
 $error_message = '';
 
-if (empty($name) || empty($mail) || empty($inquiry)){
+if ($error){
     $error_message = 'Some items have not been entered';
+    $_SESSION['error'] = false;
 }
 
 $html = file_get_contents('./input.html');
